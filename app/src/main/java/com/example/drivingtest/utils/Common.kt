@@ -11,6 +11,11 @@ import com.example.drivingtest.R
 import com.example.drivingtest.databinding.ToastCustomBinding
 
 object Common {
+    var typeTipsPractice: String = ""
+    var from: Char? = null
+    var typeExam: String = ""
+    var isCheckSwipe: Int = 0
+
     fun openActivity(activity: Activity, destinationClass: Class<*>) {
         activity.startActivity(Intent(activity.application, destinationClass))
         activity.overridePendingTransition(R.anim.dim_in, R.anim.dim_out)
@@ -20,7 +25,14 @@ object Common {
     fun addFragment(activity: Activity, id: Int, fragment: Fragment) {
         (activity as AppCompatActivity).supportFragmentManager.beginTransaction()
             .add(id, fragment)
-            .setCustomAnimations(R.anim.fade_in, R.anim.slide_out)
+            .commit()
+    }
+
+    fun replaceFragment(activity: Activity, id: Int, fragment: Fragment) {
+        (activity as AppCompatActivity).supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
+            .replace(id, fragment)
+            .addToBackStack(null)
             .commit()
     }
 

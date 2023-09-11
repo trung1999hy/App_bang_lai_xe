@@ -72,7 +72,7 @@ class DatabaseNoticeBoardAccess private constructor(context: Context) {
         return listNoticeBoard
     }
 
-    fun getListBienBaoCam(): List<NoticeBoardModel> {
+    fun getListForbiddenSign(): List<NoticeBoardModel> {
         val listNoticeBoard: MutableList<NoticeBoardModel> = ArrayList()
         openDatabase()
         database?.let {

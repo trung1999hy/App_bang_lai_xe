@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group android:id="@+id/mn2">
+        <item
+            android:id="@+id/item_tip_theory"
+            android:title="Mẹo câu hỏi lý thuyết"
+            tools:ignore="HardcodedText" />
+    </group>
+    <group android:id="@+id/mn3">
+        <item
+            android:id="@+id/item_tip_signboard"
+            android:title="Mẹo câu hỏi biển báo"
+            tools:ignore="HardcodedText" />
+    </group>
+    <group android:id="@+id/mn4">
+        <item
+            android:id="@+id/item_tip_sashape"
+            android:title="Mẹo câu hỏi sa hình"
+            tools:ignore="HardcodedText" />
+    </group>
+</menu>

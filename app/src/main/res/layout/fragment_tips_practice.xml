@@ -1,6 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/FrlA"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgBackTipPraA"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/back_ios"
+                    app:layout_constraintBottom_toBottomOf="@id/titleA"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/titleA" />
+
+                <TextView
+                    android:id="@+id/titleA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:gravity="center"
+                    android:text="SƠ ĐỒ THI SÁT HẠCH LÁI XE A1, A2"
+                    android:textColor="#000"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/image_instructionsA"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/a"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/titleA" />
+
+                <TextView
+                    android:id="@+id/title_instructionsA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginBottom="17dp"
+                    android:text="NỘI DUNG 4 BÀI SA HÌNH SÁT HẠCH LÁI XE A1, A2"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_instructionsA"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tv_instruction_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="17dp"
+                    android:text="Bài số 1: Lái xe theo vòng số 8\n\nBài số 2: Lái xe trên đường thẳng\n\nBài số 3: Lái xe trên đường ngoằn ngoèo\n\nBài số 4: Lái xe trên đường gồ ghề"
+                    android:textColor="#000"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_instructionsA"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tv_instruction_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:paddingLeft="17dp"
+                    android:text="Các lỗi bị trừ điểm:"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_instruction_1"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/tv_instruction_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:paddingLeft="17dp"
+                    android:text="Điểm tối thiểu để đạt là 80/100."
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_instruction_2"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/tv_instruction_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="17dp"
+                    android:text="- Trừ 5 điểm: cán vạch, chết máy, chân chạm đất\n\n- Trừ 25 điểm - loại trực tiếp: học viên để té xe hoặc đi sai hình (đi ngược vòng) hoặc sẽ bị lọa trực tiếp"
+                    android:textColor="#000"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_instruction_3"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tvExpExamPraA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:paddingLeft="17dp"
+                    android:text="Kinh nghiệm thi >>"
+                    android:textColor="#36b1ea"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_instruction_4"
+                    tools:ignore="HardcodedText,KeyboardInaccessibleWidget,RtlHardcoded,RtlSymmetry" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/FrlB"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollViewB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="ScrollViewSize">
+
+                <ImageView
+                    android:id="@+id/imgBackTipPraB"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/back_ios"
+                    app:layout_constraintBottom_toBottomOf="@id/title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/title" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:gravity="center"
+                    android:text="SƠ ĐỒ THI SÁT HẠCH LÁI XE B1, B2"
+                    android:textColor="#000"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/image_instruction"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/b"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+                <TextView
+                    android:id="@+id/title_instruction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="25dp"
+                    android:text="NỘI DUNG 11 BÀI SA HÌNH SÁT HẠCH LÁI XE B1, B2"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_instruction"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/tv_instruction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="17dp"
+                    android:text="Bài 1: Xuất phát.\n\nBài 2: Dừng xe nhường đường cho người đi bộ.\n\nBài 3: Dừng xe, khởi hành trên dốc.\n\nBài 4: Đi qua hàng đinh, qua đường vuông góc.\n\nBài 5: Đi xe qua ngã tư có tín hiệu điều khiển giao thông.\n\nBài 6: Đi xe qua đường vòng quanh co.\n\nBài 7: Ghép xe dọc vào nơi đỗ.\n\nBài 8: Dừng xe nơi giao nhau với đường sắt.\n\nBài 9: Tăng tốc, tăng số.\n\nBài 10: Ghép xe ngang vào nơi đỗ.\n\nBài 11: Kết thúc."
+                    android:textColor="#000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_instruction"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tvExpExamPraB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:paddingLeft="17dp"
+                    android:text="Kinh nghiệm thi >>"
+                    android:textColor="#36b1ea"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_instruction"
+                    tools:ignore="HardcodedText,KeyboardInaccessibleWidget,RtlHardcoded,RtlSymmetry" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+</LinearLayout>
