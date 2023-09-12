@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="13dp"
+    android:layout_marginRight="13dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        app:cardCornerRadius="4dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="9dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="Câu: "
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/tvStt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/imgTrueFalse"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:src="@drawable/ic_true"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="9dp"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgQuestion"
+                android:layout_width="250dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center"
+                android:layout_margin="13dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="#000"
+        android:textSize="13sp"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/view_A"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#000" />
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/B"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="#000"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/view_B"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#000" />
+
+    <View
+        android:id="@+id/view_B2"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#000"
+        android:visibility="gone" />
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/C"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="#000"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/view_C"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#000" />
+
+    <View
+        android:id="@+id/view_C2"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#000"
+        android:visibility="gone" />
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/D"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="#000"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/view_D"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#000" />
+</LinearLayout>

@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="0dp"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnExamHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:background="@drawable/custom_bg_item_history"
+        android:elevation="0dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

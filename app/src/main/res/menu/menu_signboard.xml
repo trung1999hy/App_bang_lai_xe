@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group android:id="@+id/mn1">
+        <item
+            android:id="@+id/item_board_all"
+            android:title="Tất cả"
+            tools:ignore="HardcodedText" />
+    </group>
+    <group android:id="@+id/mn2">
+        <item
+            android:id="@+id/item_board_danger"
+            android:title="Biển báo nguy hiểm"
+            tools:ignore="HardcodedText" />
+    </group>
+    <group android:id="@+id/mn3">
+        <item
+            android:id="@+id/item_board_forbidden"
+            android:title="Biển báo cấm"
+            tools:ignore="HardcodedText" />
+    </group>
+    <group android:id="@+id/mn4">
+        <item
+            android:id="@+id/item_board_command"
+            android:title="Biển báo hiệu lệnh"
+            tools:ignore="HardcodedText" />
+    </group>
+    <group android:id="@+id/mn5">
+        <item
+            android:id="@+id/item_board_directional"
+            android:title="Biển báo chỉ dẫn"
+            tools:ignore="HardcodedText" />
+    </group>
+    <group android:id="@+id/mn6">
+        <item
+            android:id="@+id/item_board_auxiliary"
+            android:title="Biển báo phụ"
+            tools:ignore="HardcodedText" />
+    </group>
+
+</menu>
