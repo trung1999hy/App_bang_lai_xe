@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +29,8 @@ class PurchaseInAppActivity : AppCompatActivity(), PurchaseInAppAdapter.OnClickL
     private var onPurchaseResponse: OnPurchaseResponse? = null
     private var listData: RecyclerView? = null
     private var imgBack: ImageView? = null
+    private var layout : LinearLayout? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inapp_purchase)
@@ -52,6 +56,7 @@ class PurchaseInAppActivity : AppCompatActivity(), PurchaseInAppAdapter.OnClickL
     private fun initViews() {
         listData = findViewById(R.id.listData)
         imgBack = findViewById(R.id.imvBack)
+        layout = findViewById(R.id.LllNoData)
         adapter = PurchaseInAppAdapter()
         listData?.setHasFixedSize(true)
         listData?.setLayoutManager(LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false))
@@ -96,11 +101,16 @@ class PurchaseInAppActivity : AppCompatActivity(), PurchaseInAppAdapter.OnClickL
 //                        hideProgressDialog();
                 productDetailsList!!.addAll(prodDetailsList)
                 adapter!!.setData(this, productDetailsList)
-                if (prodDetailsList.size == 0) Toast.makeText(
-                    this@PurchaseInAppActivity,
-                    "prodDetailsList, size = 0",
-                    Toast.LENGTH_SHORT
-                ).show()
+                if (prodDetailsList.isEmpty()) {
+                    layout?.visibility = View.VISIBLE
+                    Toast.makeText(
+                        this@PurchaseInAppActivity,
+                        "prodDetailsList, size = 0",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    layout?.visibility = View.GONE
+                }
             }, 2000)
         }
     }
