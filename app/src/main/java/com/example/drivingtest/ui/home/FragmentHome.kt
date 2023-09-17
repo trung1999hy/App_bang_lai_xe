@@ -1,15 +1,14 @@
 package com.example.drivingtest.ui.home
 
-import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.View
+import android.view.animation.TranslateAnimation
 import android.widget.AdapterView
 import android.widget.Button
-import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.constraintlayout.motion.widget.TransitionAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.drivingtest.R
@@ -18,13 +17,12 @@ import com.example.drivingtest.base.swipe.OnSwipeTouchListener
 import com.example.drivingtest.databinding.FragmentHomeBinding
 import com.example.drivingtest.inapp.PurchaseInAppActivity
 import com.example.drivingtest.local.Preference
-import com.example.drivingtest.ui.SplashActivity
-import com.example.drivingtest.ui.examination.noti.FragmentNotiExam
-import com.example.drivingtest.ui.history.FragmentHistoryExam
-import com.example.drivingtest.ui.signboard.FragmentSignBoard
-import com.example.drivingtest.ui.theory.FragmentTheory
-import com.example.drivingtest.ui.tips.FragmentTips
-import com.example.drivingtest.ui.tippractice.FragmentTipsPractice
+import com.example.drivingtest.ui.examination.noti.FragmentExamInformation
+import com.example.drivingtest.ui.history.FragmentExamHistory
+import com.example.drivingtest.ui.signboard.FragmentTrafficSign
+import com.example.drivingtest.ui.theory.FragmentTheoryLearn
+import com.example.drivingtest.ui.tips.FragmentTip
+import com.example.drivingtest.ui.tippractice.FragmentPracticeTips
 import com.example.drivingtest.utils.Common
 
 class FragmentHome : BaseFragmentWithBinding<FragmentHomeBinding>(
@@ -76,11 +74,11 @@ class FragmentHome : BaseFragmentWithBinding<FragmentHomeBinding>(
         }
 
         binding.LearnTheory.setOnClickListener {
-            replaceFragmentToMain(FragmentTheory.newInstance())
+            replaceFragmentToMain(FragmentTheoryLearn.newInstance())
         }
 
         binding.Examination.setOnClickListener {
-            replaceFragmentToMain(FragmentNotiExam.newInstance(typeExam = typeExam))
+            replaceFragmentToMain(FragmentExamInformation.newInstance(typeExam = typeExam))
         }
 
         binding.TipsPractice.setOnClickListener {
@@ -88,18 +86,43 @@ class FragmentHome : BaseFragmentWithBinding<FragmentHomeBinding>(
         }
 
         binding.SignBoard.setOnClickListener {
-            replaceFragmentToMain(FragmentSignBoard.newInstance())
+            replaceFragmentToMain(FragmentTrafficSign.newInstance())
         }
 
         binding.Tips.setOnClickListener {
-            replaceFragmentToMain(FragmentTips.newInstance())
+            val preference = Preference.buildInstance(requireActivity())
+            if ((preference?.getValueCoin() ?: 0) > 0) {
+                val dialog = AlertDialog.Builder(requireActivity())
+                dialog.setTitle("Thông báo")
+                dialog.setMessage("Trừ 1 vàng để mở khoá")
+                dialog.setNegativeButton(
+                    "Cancle"
+                ) { _, _ -> }
+
+                dialog.setPositiveButton("OK") { _, _ ->
+                    preference?.setValueCoin(preference.getValueCoin() - 1)
+                    replaceFragmentToMain(FragmentTip.newInstance())
+                }
+                dialog.show()
+            } else {
+                val alertDialog = AlertDialog.Builder(requireActivity())
+                alertDialog.setTitle("You don't have enough gold ")
+                    .setMessage("Open shop to buy more gold")
+                    .setPositiveButton("Yes") { _, _ ->
+                        val intent =
+                            Intent(requireActivity(), PurchaseInAppActivity::class.java)
+                        requireActivity().startActivity(intent)
+                    }
+                alertDialog.setNegativeButton("Cancel", null)
+                alertDialog.show()
+            }
         }
 
         binding.HistoryExam.setOnClickListener {
-            replaceFragmentToMain(FragmentHistoryExam.newInstance())
+            replaceFragmentToMain(FragmentExamHistory.newInstance())
         }
 
-        binding.tvSwipe.setOnTouchListener(object : OnSwipeTouchListener(requireActivity()) {
+        binding.ClSwipe.setOnTouchListener(object : OnSwipeTouchListener(requireActivity()) {
             override fun onSwipeLeft() {
                 Common.openActivity(requireActivity(), PurchaseInAppActivity::class.java)
             }
@@ -107,6 +130,12 @@ class FragmentHome : BaseFragmentWithBinding<FragmentHomeBinding>(
 
         val preference = Preference.buildInstance(requireContext())
         binding.coin.text = preference?.getValueCoin().toString()
+
+        val animation = TranslateAnimation(1500f, -binding.ClSwipe.width.toFloat(), 0f, 0f)
+        animation.apply {
+            duration = 4000
+        }
+        binding.ClSwipe.startAnimation(animation)
     }
 
     private fun replaceFragmentToMain(fragment: Fragment) {
@@ -114,17 +143,15 @@ class FragmentHome : BaseFragmentWithBinding<FragmentHomeBinding>(
     }
 
     private fun replaceFragmentTipsPra(type: String) {
-        replaceFragmentToMain(FragmentTipsPractice.newInstance(typeTipsPractice = type))
+        replaceFragmentToMain(FragmentPracticeTips.newInstance(typeTipsPractice = type))
         dialogTipPractice.dismiss()
     }
 
-    override fun initData() {
-
-    }
+    override fun initData() {}
 
     private fun configDialogTipsPra() {
         dialogTipPractice = Dialog(requireContext())
-        dialogTipPractice.setContentView(R.layout.custom_dialog_tips_practice)
+        dialogTipPractice.setContentView(R.layout.dialog_tips_practice)
         dialogTipPractice.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialogTipPractice.setCanceledOnTouchOutside(true)
         dialogTipPractice.findViewById<Button>(R.id.btnA1A2).setOnClickListener(this)

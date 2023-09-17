@@ -3,17 +3,17 @@ package com.example.drivingtest.ui.examination.noti
 import android.annotation.SuppressLint
 import com.example.drivingtest.R
 import com.example.drivingtest.base.BaseFragmentWithBinding
-import com.example.drivingtest.databinding.FragmentNotiExamBinding
-import com.example.drivingtest.ui.examination.FragmentExamination
+import com.example.drivingtest.databinding.FragmentExamInfoBinding
+import com.example.drivingtest.ui.examination.FragmentTakeExam
 import com.example.drivingtest.ui.home.FragmentHome
 import com.example.drivingtest.utils.Common
 
-class FragmentNotiExam : BaseFragmentWithBinding<FragmentNotiExamBinding>(
-    FragmentNotiExamBinding::inflate
+class FragmentExamInformation : BaseFragmentWithBinding<FragmentExamInfoBinding>(
+    FragmentExamInfoBinding::inflate
 ) {
     companion object {
-        fun newInstance(typeExam: String): FragmentNotiExam {
-            val fragment = FragmentNotiExam()
+        fun newInstance(typeExam: String): FragmentExamInformation {
+            val fragment = FragmentExamInformation()
             fragment.typeExam = typeExam
             Common.typeExam = typeExam
             return fragment
@@ -28,7 +28,7 @@ class FragmentNotiExam : BaseFragmentWithBinding<FragmentNotiExamBinding>(
             Common.replaceFragment(
                 requireActivity(),
                 R.id.FragmentLayout,
-                FragmentExamination.newInstance(typeExam = typeExam)
+                FragmentTakeExam.newInstance(typeExam = typeExam)
             )
         }
 

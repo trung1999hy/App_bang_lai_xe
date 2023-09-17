@@ -1,18 +1,16 @@
 package com.example.drivingtest.ui
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Handler
 import com.example.drivingtest.R
 import com.example.drivingtest.base.BaseActivity
 import com.example.drivingtest.databinding.ActivityMainBinding
-import com.example.drivingtest.ui.examination.noti.FragmentNotiExam
-import com.example.drivingtest.ui.examination.result.checkresult.FragmentCheckResult
-import com.example.drivingtest.ui.history.FragmentHistoryExam
+import com.example.drivingtest.ui.examination.noti.FragmentExamInformation
+import com.example.drivingtest.ui.examination.result.reviewanswer.FragmentReviewAnswer
+import com.example.drivingtest.ui.history.FragmentExamHistory
 import com.example.drivingtest.ui.home.FragmentHome
-import com.example.drivingtest.ui.tippractice.FragmentTipsPractice
-import com.example.drivingtest.ui.tippractice.expexam.FragmentExpExam
+import com.example.drivingtest.ui.tippractice.FragmentPracticeTips
+import com.example.drivingtest.ui.tippractice.expexam.FragmentExamExperience
 import com.example.drivingtest.utils.Common
 
 class MainActivity : BaseActivity<ActivityMainBinding>(
@@ -30,26 +28,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
         val fragment = supportFragmentManager.findFragmentById(R.id.FragmentLayout)
         if (fragment !is FragmentHome) {
             when (fragment) {
-                is FragmentExpExam -> {
+                is FragmentExamExperience -> {
                     Common.replaceFragment(
                         this@MainActivity,
                         R.id.FragmentLayout,
-                        FragmentTipsPractice.newInstance(Common.typeTipsPractice)
+                        FragmentPracticeTips.newInstance(Common.typeTipsPractice)
                     )
                 }
 
-                is FragmentCheckResult -> {
+                is FragmentReviewAnswer -> {
                     if (Common.from == 'l') {
                         Common.replaceFragment(
                             this@MainActivity,
                             R.id.FragmentLayout,
-                            FragmentHistoryExam.newInstance()
+                            FragmentExamHistory.newInstance()
                         )
                     } else {
                         Common.replaceFragment(
                             this@MainActivity,
                             R.id.FragmentLayout,
-                            FragmentNotiExam.newInstance(Common.typeExam)
+                            FragmentExamInformation.newInstance(Common.typeExam)
                         )
                     }
                 }

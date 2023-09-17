@@ -29,7 +29,7 @@ class PurchaseInAppActivity : AppCompatActivity(), PurchaseInAppAdapter.OnClickL
     private var imgBack: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_in_app_purchase)
+        setContentView(R.layout.activity_inapp_purchase)
         initViews()
         imgBack!!.setOnClickListener { onBackPressed() }
     }

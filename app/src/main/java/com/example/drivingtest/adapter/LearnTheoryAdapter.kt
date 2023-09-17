@@ -6,35 +6,36 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.drivingtest.R
 import com.example.drivingtest.base.recycleView.BaseRecyclerView
 import com.example.drivingtest.base.recycleView.BaseViewHolder
-import com.example.drivingtest.databinding.ItemRcvTheoryBinding
-import com.example.drivingtest.model.QuestionModel
+import com.example.drivingtest.databinding.ItemRcvLearnTheoryBinding
+import com.example.drivingtest.model.QuestionsModel
 
-class TheoryAdapter(
+class LearnTheoryAdapter(
     val context: Context,
-    val onClickItem: (QuestionModel) -> Unit
-) : BaseRecyclerView<QuestionModel, TheoryAdapter.ViewHolder>() {
+    val onClickItem: (QuestionsModel) -> Unit
+) : BaseRecyclerView<QuestionsModel, LearnTheoryAdapter.ViewHolder>() {
 
-    private var mList: MutableList<QuestionModel> = ArrayList()
+    private var mList: MutableList<QuestionsModel> = ArrayList()
 
-    inner class ViewHolder(private val binding: ItemRcvTheoryBinding) :
-        BaseViewHolder<QuestionModel>(binding) {
+    inner class ViewHolder(private val binding: ItemRcvLearnTheoryBinding) :
+        BaseViewHolder<QuestionsModel>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindViewHolder(data: QuestionModel) {
+        override fun bindViewHolder(data: QuestionsModel) {
             itemView.setOnClickListener { onClickItem.invoke(data) }
 
             binding.tvStt.text = data.id.toString()
-            binding.tvCauHoi.text = data.questions
+            binding.tvQuestionTheory.text = data.questions
             binding.tvDapAn.text = "Đáp án: ${data.result}"
 
             binding.A.text = data.A
             binding.B.text = data.B
             if (data.image == 1) {
-                binding.anhCauHoi.setImageDrawable(getDrawable(context, data))
-                binding.anhCauHoi.visibility = View.VISIBLE
+                binding.imageQuestionTheory.setImageDrawable(getDrawable(context, data))
+                binding.imageQuestionTheory.visibility = View.VISIBLE
             } else {
-                binding.anhCauHoi.visibility = View.GONE
+                binding.imageQuestionTheory.visibility = View.GONE
             }
             if (data.C?.compareTo("") == 0) {
                 binding.viewB.visibility = View.VISIBLE
@@ -74,7 +75,7 @@ class TheoryAdapter(
     @SuppressLint("UseCompatLoadingForDrawables", "DiscouragedApi")
     fun getDrawable(
         context: Context,
-        data: QuestionModel
+        data: QuestionsModel
     ): Drawable? {
         val resources = context.resources
         val resourceId = resources.getIdentifier(
@@ -85,15 +86,15 @@ class TheoryAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun submitList(mList: ArrayList<QuestionModel>) {
+    override fun submitList(mList: ArrayList<QuestionsModel>) {
         this.mList = mList
         notifyDataSetChanged()
     }
 
-    override fun getListItem(): MutableList<QuestionModel> = mList
+    override fun getListItem(): MutableList<QuestionsModel> = mList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemRcvTheoryBinding.inflate(LayoutInflater.from(context), parent, false))
+        return ViewHolder(ItemRcvLearnTheoryBinding.inflate(LayoutInflater.from(context), parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -102,5 +103,6 @@ class TheoryAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindViewHolder(mList[position])
+        setAnimation(context, holder.itemView, R.anim.rcv_slide_in_left)
     }
 }

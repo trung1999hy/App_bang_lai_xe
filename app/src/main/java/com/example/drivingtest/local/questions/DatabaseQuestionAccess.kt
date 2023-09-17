@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.drivingtest.model.QuestionModel
+import com.example.drivingtest.model.QuestionsModel
 
 class DatabaseQuestionAccess private constructor(context: Context) {
     private val openHelper: SQLiteOpenHelper = DatabaseQuestionHelper(context)
@@ -30,8 +30,8 @@ class DatabaseQuestionAccess private constructor(context: Context) {
         database?.close()
     }
 
-    fun getQuestions(): List<QuestionModel> {
-        val listQuestions = ArrayList<QuestionModel>()
+    fun getQuestions(): List<QuestionsModel> {
+        val listQuestions = ArrayList<QuestionsModel>()
         openDatabase()
         database?.let {
             val cursor: Cursor = it.rawQuery("SELECT * FROM CauHoi", null)
@@ -45,7 +45,7 @@ class DatabaseQuestionAccess private constructor(context: Context) {
                 val C: String = cursor.getString(5)
                 val D: String = cursor.getString(6)
                 val result: String = cursor.getString(7)
-                listQuestions.add(QuestionModel(id, question, image, A, B, C, D, result))
+                listQuestions.add(QuestionsModel(id, question, image, A, B, C, D, result))
                 cursor.moveToNext()
             }
             cursor.close()
@@ -54,8 +54,8 @@ class DatabaseQuestionAccess private constructor(context: Context) {
         return listQuestions
     }
 
-    fun getQuestionsTheory(i: Int): List<QuestionModel> {
-        val listQuestions = ArrayList<QuestionModel>()
+    fun getQuestionsTheory(i: Int): List<QuestionsModel> {
+        val listQuestions = ArrayList<QuestionsModel>()
         openDatabase()
         database?.let {
             val cursor: Cursor = it.rawQuery(
@@ -72,7 +72,7 @@ class DatabaseQuestionAccess private constructor(context: Context) {
                 val C: String = cursor.getString(5)
                 val D: String = cursor.getString(6)
                 val result: String = cursor.getString(7)
-                listQuestions.add(QuestionModel(id, question, image, A, B, C, D, result))
+                listQuestions.add(QuestionsModel(id, question, image, A, B, C, D, result))
                 cursor.moveToNext()
             }
             cursor.close()

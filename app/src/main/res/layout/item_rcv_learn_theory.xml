@@ -18,7 +18,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="#eae7e7" />
+            android:background="#CFDDDF" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:paddingBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#eae7e7"
+                android:background="#CFDDDF"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -55,7 +55,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_cauHoi"
+                    android:id="@+id/tvQuestionTheory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="9dp"
@@ -66,13 +66,14 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/anhCauHoi"
+                    android:id="@+id/imageQuestionTheory"
                     android:layout_width="250dp"
                     android:layout_height="125dp"
                     android:layout_gravity="center"
                     android:layout_margin="13dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter" />
+
             </LinearLayout>
 
             <View
@@ -161,7 +162,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fcfcec"
+                android:background="#F6EDE0"
                 android:gravity="end"
                 android:orientation="horizontal"
                 android:padding="10dp">
@@ -171,11 +172,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="9dp"
-                    android:background="#FFFF00"
                     android:padding="6dp"
                     android:text="Đáp án: 1-2"
                     android:textColor="#000"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText,RtlHardcoded" />
             </LinearLayout>

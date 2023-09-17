@@ -1,25 +1,25 @@
-package com.example.drivingtest.ui.examination.result.checkresult
+package com.example.drivingtest.ui.examination.result.reviewanswer
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.drivingtest.R
-import com.example.drivingtest.adapter.CheckResultAdapter
-import com.example.drivingtest.adapter.HistoryExamAdapter
+import com.example.drivingtest.adapter.ReviewAnswerAdapter
+import com.example.drivingtest.adapter.ExamHistoryAdapter
 import com.example.drivingtest.base.BaseFragmentWithBinding
-import com.example.drivingtest.databinding.FragmentCheckResultBinding
-import com.example.drivingtest.model.QuestionModel
-import com.example.drivingtest.ui.examination.FragmentExamination
-import com.example.drivingtest.ui.examination.FragmentExamination.Companion.SIZE
-import com.example.drivingtest.ui.examination.noti.FragmentNotiExam
-import com.example.drivingtest.ui.history.FragmentHistoryExam
+import com.example.drivingtest.databinding.FragmentReviewAnswerBinding
+import com.example.drivingtest.model.QuestionsModel
+import com.example.drivingtest.ui.examination.FragmentTakeExam
+import com.example.drivingtest.ui.examination.FragmentTakeExam.Companion.SIZE
+import com.example.drivingtest.ui.examination.noti.FragmentExamInformation
+import com.example.drivingtest.ui.history.FragmentExamHistory
 import com.example.drivingtest.utils.Common
 
-class FragmentCheckResult : BaseFragmentWithBinding<FragmentCheckResultBinding>(
-    FragmentCheckResultBinding::inflate
+class FragmentReviewAnswer : BaseFragmentWithBinding<FragmentReviewAnswerBinding>(
+    FragmentReviewAnswerBinding::inflate
 ) {
     companion object {
-        fun newInstance(from: Char? = null, pos: Int ?= null): FragmentCheckResult {
-            val fragment = FragmentCheckResult()
+        fun newInstance(from: Char? = null, pos: Int ?= null): FragmentReviewAnswer {
+            val fragment = FragmentReviewAnswer()
             fragment.from = from
             Common.from = from
             if (pos != null) {
@@ -28,11 +28,11 @@ class FragmentCheckResult : BaseFragmentWithBinding<FragmentCheckResultBinding>(
             return fragment
         }
 
-        var mList: ArrayList<QuestionModel> = ArrayList()
+        var mList: ArrayList<QuestionsModel> = ArrayList()
     }
 
     var from: Char? = null
-    private var mAdapter: CheckResultAdapter? = null
+    private var mAdapter: ReviewAnswerAdapter? = null
     var pos: Int = 0
 
     @SuppressLint("SetTextI18n")
@@ -42,25 +42,25 @@ class FragmentCheckResult : BaseFragmentWithBinding<FragmentCheckResultBinding>(
             binding.ImgBackCheckResult.setOnClickListener {
                 Common.replaceFragment(
                     requireActivity(),
-                    R.id.FragmentLayout, FragmentHistoryExam.newInstance()
+                    R.id.FragmentLayout, FragmentExamHistory.newInstance()
                 )
             }
-            mList = HistoryExamAdapter.getListQuestion() as ArrayList<QuestionModel>
-            mAdapter = CheckResultAdapter(requireContext(), FragmentExamination.checkTrueFalse, 'l')
+            mList = ExamHistoryAdapter.getListQuestion() as ArrayList<QuestionsModel>
+            mAdapter = ReviewAnswerAdapter(requireContext(), FragmentTakeExam.checkTrueFalse, 'l')
             mAdapter?.submitList(mList)
         } else {
             binding.tvTitleCheckResult.text = "Đáp án bài thi"
             binding.ImgBackCheckResult.setOnClickListener {
                 Common.replaceFragment(
                     requireActivity(),
-                    R.id.FragmentLayout, FragmentNotiExam.newInstance(Common.typeExam)
+                    R.id.FragmentLayout, FragmentExamInformation.newInstance(Common.typeExam)
                 )
             }
             mList.clear()
             for (i in 0 until SIZE) {
-                mList.add(FragmentExamination.listData?.get(i) ?: return)
+                mList.add(FragmentTakeExam.listData?.get(i) ?: return)
             }
-            mAdapter = CheckResultAdapter(requireContext(), FragmentExamination.checkTrueFalse, 't')
+            mAdapter = ReviewAnswerAdapter(requireContext(), FragmentTakeExam.checkTrueFalse, 't')
             mAdapter?.submitList(mList)
         }
 

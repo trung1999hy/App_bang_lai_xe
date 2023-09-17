@@ -3,17 +3,17 @@ package com.example.drivingtest.ui.tippractice
 import android.view.View
 import com.example.drivingtest.R
 import com.example.drivingtest.base.BaseFragmentWithBinding
-import com.example.drivingtest.databinding.FragmentTipsPracticeBinding
+import com.example.drivingtest.databinding.FragmentPracticeTipBinding
 import com.example.drivingtest.ui.home.FragmentHome
-import com.example.drivingtest.ui.tippractice.expexam.FragmentExpExam
+import com.example.drivingtest.ui.tippractice.expexam.FragmentExamExperience
 import com.example.drivingtest.utils.Common
 
-class FragmentTipsPractice : BaseFragmentWithBinding<FragmentTipsPracticeBinding>(
-    FragmentTipsPracticeBinding::inflate
+class FragmentPracticeTips : BaseFragmentWithBinding<FragmentPracticeTipBinding>(
+    FragmentPracticeTipBinding::inflate
 ) {
     companion object {
-        fun newInstance(typeTipsPractice: String): FragmentTipsPractice {
-            val fragment = FragmentTipsPractice()
+        fun newInstance(typeTipsPractice: String): FragmentPracticeTips {
+            val fragment = FragmentPracticeTips()
             fragment.typeTipsPractice = typeTipsPractice
             return fragment
         }
@@ -57,7 +57,7 @@ class FragmentTipsPractice : BaseFragmentWithBinding<FragmentTipsPracticeBinding
         Common.replaceFragment(
             requireActivity(),
             R.id.FragmentLayout,
-            FragmentExpExam.newInstance(type)
+            FragmentExamExperience.newInstance(type)
         )
     }
 }

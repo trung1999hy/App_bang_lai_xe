@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,8 +34,6 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/CardToolBarHome">
 
@@ -42,34 +41,62 @@
                 android:id="@+id/coin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
                 android:drawableEnd="@drawable/ic_coin"
                 android:drawablePadding="6dp"
                 android:text="5"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@id/SpinnerType"
+                app:layout_constraintBottom_toBottomOf="@id/RlSpinner"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/SpinnerType"
+                app:layout_constraintTop_toTopOf="@id/RlSpinner"
                 tools:ignore="HardcodedText,UseCompatTextViewDrawableXml" />
 
-            <Spinner
-                android:id="@+id/SpinnerType"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/RlSpinner"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/spinner_border"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/coin"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Spinner
+                    android:id="@+id/SpinnerType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/drop" />
+
+            </RelativeLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/LearnTheory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_home"
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SpinnerType">
+                app:layout_constraintTop_toBottomOf="@+id/RlSpinner">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="100dp"
@@ -94,6 +121,7 @@
                 android:id="@+id/Examination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_home"
                 android:orientation="vertical"
@@ -124,6 +152,7 @@
                 android:id="@+id/TipsPractice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_home"
                 android:orientation="vertical"
@@ -182,11 +211,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
                 android:background="@drawable/bg_home"
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SpinnerType">
+                app:layout_constraintTop_toBottomOf="@id/RlSpinner">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="100dp"
@@ -212,6 +242,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
                 android:background="@drawable/bg_home"
                 android:orientation="vertical"
                 android:padding="15dp"
@@ -242,6 +273,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
                 android:background="@drawable/bg_home"
                 android:orientation="vertical"
                 android:padding="15dp"
@@ -267,30 +299,42 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.airbnb.lottie.LottieAnimationView
-                app:layout_constraintTop_toBottomOf="@id/TipsPractice"
-                android:layout_width="100dp"
-                android:layout_height="70dp"
-                app:lottie_rawRes="@raw/animation_back"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
+                android:id="@+id/ClSwipe"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TipsPractice"
                 app:layout_constraintStart_toStartOf="parent"
-                android:id="@+id/anim_back"/>
-
-            <TextView
-                android:id="@+id/tvSwipe"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Vuốt sang trái để tới cửa hàng"
-                android:textSize="20dp"
+                android:layout_width="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="#008EFF"
-                app:layout_constraintTop_toTopOf="@id/anim_back"
-                app:layout_constraintBottom_toBottomOf="@id/anim_back"
-                app:layout_constraintStart_toEndOf="@id/anim_back"
-                tools:ignore="HardcodedText,SpUsage" />
+                android:layout_marginEnd="5dp"
+                android:layout_height="wrap_content">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/anim_back"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/animation_swipe" />
+
+                <TextView
+                    android:id="@+id/tvSwipe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Vuốt sang trái để mở cửa hàng"
+                    android:textColor="#008EFF"
+                    android:textSize="21sp"
+                    app:layout_constraintBottom_toBottomOf="@id/anim_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/anim_back"
+                    app:layout_constraintTop_toTopOf="@id/anim_back"
+                    tools:ignore="HardcodedText,SpUsage" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

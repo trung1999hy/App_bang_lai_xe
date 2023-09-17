@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.drivingtest.R
-import com.example.drivingtest.databinding.ToastCustomBinding
+import com.example.drivingtest.databinding.CustomToastBinding
 
 object Common {
     var typeTipsPractice: String = ""
@@ -43,7 +43,7 @@ object Common {
     ) {
         val toast = Toast(activity)
         toast.apply {
-            val mBinding = ToastCustomBinding.inflate(layoutInflater)
+            val mBinding = CustomToastBinding.inflate(layoutInflater)
             mBinding.tvMessageCustomToast.text = "Nhấn quay lại một lần nữa để thoát ứng dụng"
             duration = Toast.LENGTH_SHORT
             view = mBinding.root

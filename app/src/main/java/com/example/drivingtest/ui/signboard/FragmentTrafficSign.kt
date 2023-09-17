@@ -5,29 +5,29 @@ import android.view.Gravity
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.drivingtest.R
-import com.example.drivingtest.adapter.SignBoardAdapter
+import com.example.drivingtest.adapter.TrafficSignAdapter
 import com.example.drivingtest.base.BaseFragmentWithBinding
-import com.example.drivingtest.databinding.FragmentSignboardBinding
+import com.example.drivingtest.databinding.FragmentTrafficSignBinding
 import com.example.drivingtest.local.noticeboard.DatabaseNoticeBoardAccess
-import com.example.drivingtest.model.NoticeBoardModel
+import com.example.drivingtest.model.TrafficSignModel
 import com.example.drivingtest.ui.home.FragmentHome
 import com.example.drivingtest.utils.Common
 
-class FragmentSignBoard : BaseFragmentWithBinding<FragmentSignboardBinding>(
-    FragmentSignboardBinding::inflate
+class FragmentTrafficSign : BaseFragmentWithBinding<FragmentTrafficSignBinding>(
+    FragmentTrafficSignBinding::inflate
 ) {
     companion object {
-        fun newInstance() = FragmentSignBoard()
+        fun newInstance() = FragmentTrafficSign()
     }
 
-    private var mAdapter: SignBoardAdapter? = null
+    private var mAdapter: TrafficSignAdapter? = null
 
     @SuppressLint("SetTextI18n")
     override fun initAction() {
-        mAdapter = SignBoardAdapter(requireContext())
+        mAdapter = TrafficSignAdapter(requireContext())
         mAdapter?.submitList(
             DatabaseNoticeBoardAccess.getInstance(requireContext())
-                .getListNoticeBoard() as ArrayList<NoticeBoardModel>
+                .getListDangerSign() as ArrayList<TrafficSignModel>
         )
         binding.RcvSignBoard.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -38,19 +38,11 @@ class FragmentSignBoard : BaseFragmentWithBinding<FragmentSignboardBinding>(
             popMenu.menuInflater.inflate(R.menu.menu_signboard, popMenu.menu)
             popMenu.setOnMenuItemClickListener { p0 ->
                 when (p0?.itemId) {
-                    R.id.item_board_all -> {
-                        binding.tvTitle.text = "Tất cả biển báo"
-                        mAdapter?.submitList(
-                            DatabaseNoticeBoardAccess.getInstance(requireContext())
-                                .getListNoticeBoard() as ArrayList<NoticeBoardModel>
-                        )
-                    }
-
                     R.id.item_board_danger -> {
                         binding.tvTitle.text = "Biển báo nguy hiểm"
                         mAdapter?.submitList(
                             DatabaseNoticeBoardAccess.getInstance(requireContext())
-                                .getListDangerSign() as ArrayList<NoticeBoardModel>
+                                .getListDangerSign() as ArrayList<TrafficSignModel>
                         )
                     }
 
@@ -58,7 +50,7 @@ class FragmentSignBoard : BaseFragmentWithBinding<FragmentSignboardBinding>(
                         binding.tvTitle.text = "Biển báo cấm"
                         mAdapter?.submitList(
                             DatabaseNoticeBoardAccess.getInstance(requireContext())
-                                .getListForbiddenSign() as ArrayList<NoticeBoardModel>
+                                .getListForbiddenSign() as ArrayList<TrafficSignModel>
                         )
                     }
 
@@ -66,7 +58,7 @@ class FragmentSignBoard : BaseFragmentWithBinding<FragmentSignboardBinding>(
                         binding.tvTitle.text = "Biển báo hiệu lệnh"
                         mAdapter?.submitList(
                             DatabaseNoticeBoardAccess.getInstance(requireContext())
-                                .getListCommandSignboard() as ArrayList<NoticeBoardModel>
+                                .getListCommandSignboard() as ArrayList<TrafficSignModel>
                         )
                     }
 
@@ -74,7 +66,7 @@ class FragmentSignBoard : BaseFragmentWithBinding<FragmentSignboardBinding>(
                         binding.tvTitle.text = "Biển báo chỉ dẫn"
                         mAdapter?.submitList(
                             DatabaseNoticeBoardAccess.getInstance(requireContext())
-                                .getListDirectionalSignboard() as ArrayList<NoticeBoardModel>
+                                .getListDirectionalSignboard() as ArrayList<TrafficSignModel>
                         )
                     }
 
@@ -82,7 +74,7 @@ class FragmentSignBoard : BaseFragmentWithBinding<FragmentSignboardBinding>(
                         binding.tvTitle.text = "Biển báo phụ"
                         mAdapter?.submitList(
                             DatabaseNoticeBoardAccess.getInstance(requireContext())
-                                .getListAuxiliarySignboard() as ArrayList<NoticeBoardModel>
+                                .getListAuxiliarySignboard() as ArrayList<TrafficSignModel>
                         )
                     }
                 }

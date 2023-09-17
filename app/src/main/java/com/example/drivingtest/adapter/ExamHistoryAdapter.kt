@@ -1,24 +1,22 @@
 package com.example.drivingtest.adapter
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.drivingtest.base.recycleView.BaseRecyclerView
 import com.example.drivingtest.base.recycleView.BaseViewHolder
-import com.example.drivingtest.databinding.ItemRcvHistoryBinding
-import com.example.drivingtest.model.ExaminationModel
-import com.example.drivingtest.model.QuestionModel
-import com.example.drivingtest.ui.examination.FragmentExamination
+import com.example.drivingtest.databinding.ItemRcvExamHistoryBinding
+import com.example.drivingtest.model.TakeExamModel
+import com.example.drivingtest.model.QuestionsModel
+import com.example.drivingtest.ui.examination.FragmentTakeExam
 
-class HistoryExamAdapter(val context: Context, mList: ArrayList<ExaminationModel>, val onClickItem: () -> Unit) :
-    BaseRecyclerView<ExaminationModel, HistoryExamAdapter.ViewHolder>() {
+class ExamHistoryAdapter(val context: Context, mList: ArrayList<TakeExamModel>, val onClickItem: () -> Unit) :
+    BaseRecyclerView<TakeExamModel, ExamHistoryAdapter.ViewHolder>() {
     companion object {
         var pos: Int = -1
-        var mListQuestions = ArrayList<ExaminationModel>()
-        fun getListQuestion(): List<QuestionModel> {
+        var mListQuestions = ArrayList<TakeExamModel>()
+        fun getListQuestion(): List<QuestionsModel> {
             return mListQuestions[pos].listQuestion
         }
     }
@@ -27,29 +25,29 @@ class HistoryExamAdapter(val context: Context, mList: ArrayList<ExaminationModel
         mListQuestions = mList
     }
 
-    inner class ViewHolder(private val binding: ItemRcvHistoryBinding) :
-        BaseViewHolder<ExaminationModel>(binding) {
+    inner class ViewHolder(private val binding: ItemRcvExamHistoryBinding) :
+        BaseViewHolder<TakeExamModel>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindViewHolder(data: ExaminationModel) {
+        override fun bindViewHolder(data: TakeExamModel) {
             binding.btnExamHistory.text = "Đề ${position + 1}"
             binding.btnExamHistory.setOnClickListener {
                 pos = position
                 onClickItem.invoke()
             }
-            FragmentExamination.SIZE = data.listQuestion.size
+            FragmentTakeExam.SIZE = data.listQuestion.size
         }
 
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun submitList(mList: ArrayList<ExaminationModel>) {
+    override fun submitList(mList: ArrayList<TakeExamModel>) {
         /* */
     }
 
-    override fun getListItem(): MutableList<ExaminationModel> = mListQuestions
+    override fun getListItem(): MutableList<TakeExamModel> = mListQuestions
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemRcvHistoryBinding.inflate(
+            ItemRcvExamHistoryBinding.inflate(
                 LayoutInflater.from(context),
                 parent,
                 false

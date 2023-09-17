@@ -7,15 +7,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.drivingtest.base.recycleView.BaseRecyclerView
 import com.example.drivingtest.base.recycleView.BaseViewHolder
-import com.example.drivingtest.databinding.ItemRcvSignboardBinding
-import com.example.drivingtest.model.NoticeBoardModel
+import com.example.drivingtest.databinding.ItemRcvTrafficSignBinding
+import com.example.drivingtest.model.TrafficSignModel
 
-class SignBoardAdapter(val context: Context) : BaseRecyclerView<NoticeBoardModel, SignBoardAdapter.ViewHolder>() {
+class TrafficSignAdapter(val context: Context) : BaseRecyclerView<TrafficSignModel, TrafficSignAdapter.ViewHolder>() {
 
-    private var mList : ArrayList<NoticeBoardModel> = arrayListOf()
+    private var mList : ArrayList<TrafficSignModel> = arrayListOf()
 
-    inner class ViewHolder(private val binding: ItemRcvSignboardBinding) : BaseViewHolder<NoticeBoardModel>(binding) {
-        override fun bindViewHolder(data: NoticeBoardModel) {
+    inner class ViewHolder(private val binding: ItemRcvTrafficSignBinding) : BaseViewHolder<TrafficSignModel>(binding) {
+        override fun bindViewHolder(data: TrafficSignModel) {
             binding.tvContentBoard.text = data.content
             binding.imageSignBoard.setImageDrawable(getDrawable(context, data))
         }
@@ -23,15 +23,15 @@ class SignBoardAdapter(val context: Context) : BaseRecyclerView<NoticeBoardModel
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun submitList(mList: ArrayList<NoticeBoardModel>) {
+    override fun submitList(mList: ArrayList<TrafficSignModel>) {
        this.mList = mList
         notifyDataSetChanged()
     }
 
-    override fun getListItem(): MutableList<NoticeBoardModel>? = null
+    override fun getListItem(): MutableList<TrafficSignModel>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       return ViewHolder(ItemRcvSignboardBinding.inflate(LayoutInflater.from(context), parent, false))
+       return ViewHolder(ItemRcvTrafficSignBinding.inflate(LayoutInflater.from(context), parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -45,7 +45,7 @@ class SignBoardAdapter(val context: Context) : BaseRecyclerView<NoticeBoardModel
     @SuppressLint("UseCompatLoadingForDrawables", "DiscouragedApi")
     fun getDrawable(
         context: Context,
-        data: NoticeBoardModel
+        data: TrafficSignModel
     ): Drawable? {
         val resources = context.resources
         val resourceId = resources.getIdentifier(

@@ -1,9 +1,7 @@
 package com.example.drivingtest.ui.examination
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
@@ -12,13 +10,13 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.drivingtest.R
-import com.example.drivingtest.adapter.ExaminationAdapter
+import com.example.drivingtest.adapter.TakeExamAdapter
 import com.example.drivingtest.base.BaseFragmentWithBinding
-import com.example.drivingtest.databinding.FragmentExaminationBinding
+import com.example.drivingtest.databinding.FragmentTakeExamBinding
 import com.example.drivingtest.local.questions.DatabaseQuestionAccess
-import com.example.drivingtest.model.ExaminationModel
-import com.example.drivingtest.model.QuestionModel
-import com.example.drivingtest.ui.examination.result.FragmentResult
+import com.example.drivingtest.model.TakeExamModel
+import com.example.drivingtest.model.QuestionsModel
+import com.example.drivingtest.ui.examination.result.FragmentResults
 import com.example.drivingtest.utils.Common
 import java.io.File
 import java.io.FileInputStream
@@ -30,31 +28,31 @@ import java.io.ObjectOutputStream
 import java.util.Random
 
 @Suppress("UNCHECKED_CAST")
-class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
-    FragmentExaminationBinding::inflate
+class FragmentTakeExam : BaseFragmentWithBinding<FragmentTakeExamBinding>(
+    FragmentTakeExamBinding::inflate
 ), View.OnClickListener {
     companion object {
-        fun newInstance(typeExam: String): FragmentExamination {
-            val fragment = FragmentExamination()
+        fun newInstance(typeExam: String): FragmentTakeExam {
+            val fragment = FragmentTakeExam()
             fragment.typeExam = typeExam
             return fragment
         }
 
         var SIZE: Int = 0
-        var listData: ArrayList<QuestionModel>? = null
+        var listData: ArrayList<QuestionsModel>? = null
         var numberCorrect = 0
         var checkTrueFalse = BooleanArray(100)
         var sttQuestions = IntArray(100)
     }
 
-    private var listQuestion = arrayListOf<QuestionModel>()
-    private var listExam = arrayListOf<ExaminationModel>()
+    private var listQuestion = arrayListOf<QuestionsModel>()
+    private var listExam = arrayListOf<TakeExamModel>()
     private var FLAG = 0
     private val answerChoice: Array<StringBuilder?> = arrayOfNulls(35)
     private var time = 1200
     private var dialogFinish: Dialog? = null
     private var dialogTimeOut: Dialog? = null
-    private var mAdapter: ExaminationAdapter? = null
+    private var mAdapter: TakeExamAdapter? = null
 
     private var btnDestroy: Button? = null
     private var btnOk: Button? = null
@@ -90,12 +88,12 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
         SIZE = if (typeExam.equals("A1,A2")) 25 else if (typeExam.equals("B1")) 30 else 35
         randomQuestion()
         setControl()
-        listExam = readFile("historyExam.txt") as ArrayList<ExaminationModel>
+        listExam = readFile("historyExam.txt") as ArrayList<TakeExamModel>
         if (listExam.size < 25) {
-            listExam.add(ExaminationModel(listData ?: return))
+            listExam.add(TakeExamModel(listData ?: return))
         } else {
             for (i in 24 downTo 1) listExam[i] = listExam[i - 1]
-            listExam[0] = ExaminationModel(listData ?: return)
+            listExam[0] = TakeExamModel(listData ?: return)
         }
         FLAG = 1
         time = if(typeExam.equals("B2")) 1300 else 1200
@@ -118,7 +116,7 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
         btnCancel?.setOnClickListener(this)
         binding.tvDone.setOnClickListener(this)
 
-        mAdapter = ExaminationAdapter(requireContext(), listData?.get(0) ?: return, 0, SIZE)
+        mAdapter = TakeExamAdapter(requireContext(), listData?.get(0) ?: return, 0, SIZE)
         binding.RcvExamination.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.RcvExamination.adapter = mAdapter
@@ -126,11 +124,11 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
 
     private fun configDialog() {
         dialogFinish = Dialog(requireContext())
-        dialogFinish?.setContentView(R.layout.custom_dialog_finish)
+        dialogFinish?.setContentView(R.layout.dialog_finish)
         dialogFinish?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialogFinish?.setCanceledOnTouchOutside(false)
         dialogTimeOut = Dialog(requireContext())
-        dialogTimeOut?.setContentView(R.layout.custom_dialog_timeout)
+        dialogTimeOut?.setContentView(R.layout.dialog_timeout)
         dialogTimeOut?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialogTimeOut?.setCanceledOnTouchOutside(false)
         btnDestroy = dialogFinish?.findViewById(R.id.bt_huyBo)
@@ -150,7 +148,7 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
         val a = arrayListOf<Int>()
         val rd = Random()
         listQuestion = DatabaseQuestionAccess.getInstance(requireContext())
-            .getQuestions() as ArrayList<QuestionModel>
+            .getQuestions() as ArrayList<QuestionsModel>
         var x: Int
         for (i in 0 until SIZE) {
             do {
@@ -162,8 +160,8 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
         }
     }
 
-    private fun readFile(fileName: String?): List<ExaminationModel?> {
-        var listExam: List<ExaminationModel?> = ArrayList()
+    private fun readFile(fileName: String?): List<TakeExamModel?> {
+        var listExam: List<TakeExamModel?> = ArrayList()
         try {
             var file: File = requireContext().getFileStreamPath(fileName)
             if (!file.exists()) {
@@ -171,7 +169,7 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
             }
             val fis = FileInputStream(file)
             val ois = ObjectInputStream(fis)
-            listExam = ois.readObject() as List<ExaminationModel?>
+            listExam = ois.readObject() as List<TakeExamModel?>
             ois.close()
             fis.close()
         } catch (e: FileNotFoundException) {
@@ -184,7 +182,7 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
         return listExam
     }
 
-    private fun writeFile(listExam: List<ExaminationModel?>?) {
+    private fun writeFile(listExam: List<TakeExamModel?>?) {
         try {
             val file: File = requireContext().getFileStreamPath("historyExam.txt")
             val fos = FileOutputStream(file)
@@ -200,7 +198,7 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
     }
 
     private fun resetQuestions() {
-        mAdapter = ExaminationAdapter(
+        mAdapter = TakeExamAdapter(
             requireContext(),
             listData?.get(count - 1) ?: return,
             count - 1,
@@ -272,7 +270,7 @@ class FragmentExamination : BaseFragmentWithBinding<FragmentExaminationBinding>(
                         }
                     }
                     Common.replaceFragment(
-                        requireActivity(), R.id.FragmentLayout, FragmentResult.newInstance(
+                        requireActivity(), R.id.FragmentLayout, FragmentResults.newInstance(
                             numberCorrect.toString(), typeExam.toString()
                         )
                     )

@@ -22,18 +22,9 @@
             android:padding="10dp"
             android:textColor="#000"
             android:textSize="14sp"
-            android:visibility="gone"
             tools:ignore="HardcodedText" />
 
     </androidx.cardview.widget.CardView>
-
-    <ImageView
-        android:id="@+id/lockContent"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/padlock" />
 
     <View
         android:layout_width="match_parent"

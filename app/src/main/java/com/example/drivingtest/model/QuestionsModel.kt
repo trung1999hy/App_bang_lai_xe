@@ -2,7 +2,7 @@ package com.example.drivingtest.model
 
 import java.io.Serializable
 
-data class QuestionModel(
+data class QuestionsModel(
     var id: Int = 0,
     val questions: String? = null,
     val image: Int = 0,

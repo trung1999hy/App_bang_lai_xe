@@ -9,18 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.drivingtest.base.recycleView.BaseRecyclerView
 import com.example.drivingtest.base.recycleView.BaseViewHolder
-import com.example.drivingtest.databinding.ItemRcvCheckResultBinding
-import com.example.drivingtest.model.QuestionModel
+import com.example.drivingtest.databinding.ItemRcvReviewAnswerBinding
+import com.example.drivingtest.model.QuestionsModel
 
-class CheckResultAdapter(val context: Context, val checkTrueFalse: BooleanArray, val t: Char) :
-    BaseRecyclerView<QuestionModel, CheckResultAdapter.ViewHolder>() {
+class ReviewAnswerAdapter(val context: Context, val checkTrueFalse: BooleanArray, val t: Char) :
+    BaseRecyclerView<QuestionsModel, ReviewAnswerAdapter.ViewHolder>() {
 
-    private var mList: ArrayList<QuestionModel> = ArrayList()
+    private var mList: ArrayList<QuestionsModel> = ArrayList()
 
-    inner class ViewHolder(private val binding: ItemRcvCheckResultBinding) :
-        BaseViewHolder<QuestionModel>(binding) {
+    inner class ViewHolder(private val binding: ItemRcvReviewAnswerBinding) :
+        BaseViewHolder<QuestionsModel>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindViewHolder(data: QuestionModel) {
+        override fun bindViewHolder(data: QuestionsModel) {
             binding.tvStt.text = "${position + 1}"
             binding.tvQuestion.text = mList[position].questions
             if (mList[position].image == 1) {
@@ -112,16 +112,16 @@ class CheckResultAdapter(val context: Context, val checkTrueFalse: BooleanArray,
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun submitList(mList: ArrayList<QuestionModel>) {
+    override fun submitList(mList: ArrayList<QuestionsModel>) {
         this.mList = mList
         notifyDataSetChanged()
     }
 
-    override fun getListItem(): MutableList<QuestionModel>? = null
+    override fun getListItem(): MutableList<QuestionsModel>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemRcvCheckResultBinding.inflate(
+            ItemRcvReviewAnswerBinding.inflate(
                 LayoutInflater.from(context),
                 parent,
                 false

@@ -7,26 +7,25 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.drivingtest.R
-import com.example.drivingtest.adapter.TheoryAdapter
+import com.example.drivingtest.adapter.LearnTheoryAdapter
 import com.example.drivingtest.base.BaseFragmentWithBinding
-import com.example.drivingtest.databinding.FragmentTheoryBinding
-import com.example.drivingtest.ui.MainActivity
+import com.example.drivingtest.databinding.FragmentTheoryLearnBinding
 import com.example.drivingtest.ui.home.FragmentHome
 import com.example.drivingtest.utils.Common
 
-class FragmentTheory : BaseFragmentWithBinding<FragmentTheoryBinding>(
-    FragmentTheoryBinding::inflate
+class FragmentTheoryLearn : BaseFragmentWithBinding<FragmentTheoryLearnBinding>(
+    FragmentTheoryLearnBinding::inflate
 ) {
     companion object {
-        fun newInstance() = FragmentTheory()
+        fun newInstance() = FragmentTheoryLearn()
     }
 
     private var countData = 1
-    private var mAdapter: TheoryAdapter? = null
-    private val viewModel: FragmentTheoryViewModel by viewModels()
+    private var mAdapter: LearnTheoryAdapter? = null
+    private val viewModel: FragmentTheoryLearnViewModel by viewModels()
 
     override fun initAction() {
-        mAdapter = TheoryAdapter(requireContext(), onClickItem = {})
+        mAdapter = LearnTheoryAdapter(requireContext(), onClickItem = {})
         binding.RcvTheory.layoutManager =
             StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         binding.RcvTheory.adapter = mAdapter

@@ -4,16 +4,16 @@ import android.annotation.SuppressLint
 import android.view.View
 import com.example.drivingtest.R
 import com.example.drivingtest.base.BaseFragmentWithBinding
-import com.example.drivingtest.databinding.FragmentExpExamBinding
-import com.example.drivingtest.ui.tippractice.FragmentTipsPractice
+import com.example.drivingtest.databinding.FragmentExamExperienceBinding
+import com.example.drivingtest.ui.tippractice.FragmentPracticeTips
 import com.example.drivingtest.utils.Common
 
-class FragmentExpExam : BaseFragmentWithBinding<FragmentExpExamBinding>(
-    FragmentExpExamBinding::inflate
+class FragmentExamExperience : BaseFragmentWithBinding<FragmentExamExperienceBinding>(
+    FragmentExamExperienceBinding::inflate
 ) {
     companion object {
-        fun newInstance(typeDriving: String): FragmentExpExam {
-            val fragment = FragmentExpExam()
+        fun newInstance(typeDriving: String): FragmentExamExperience {
+            val fragment = FragmentExamExperience()
             fragment.typeDriving = typeDriving
             Common.typeTipsPractice = typeDriving
             return fragment
@@ -32,7 +32,7 @@ class FragmentExpExam : BaseFragmentWithBinding<FragmentExpExamBinding>(
                 Common.replaceFragment(
                     requireActivity(),
                     R.id.FragmentLayout,
-                    FragmentTipsPractice.newInstance(typeTipsPractice = typeDriving)
+                    FragmentPracticeTips.newInstance(typeTipsPractice = typeDriving)
                 )
             }
         } else {
@@ -43,7 +43,7 @@ class FragmentExpExam : BaseFragmentWithBinding<FragmentExpExamBinding>(
                 Common.replaceFragment(
                     requireActivity(),
                     R.id.FragmentLayout,
-                    FragmentTipsPractice.newInstance(typeTipsPractice = typeDriving)
+                    FragmentPracticeTips.newInstance(typeTipsPractice = typeDriving)
                 )
             }
         }

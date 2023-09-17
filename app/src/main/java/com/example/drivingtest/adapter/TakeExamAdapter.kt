@@ -11,17 +11,17 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import com.example.drivingtest.base.recycleView.BaseRecyclerView
 import com.example.drivingtest.base.recycleView.BaseViewHolder
-import com.example.drivingtest.databinding.ItemRcvExaminationBinding
-import com.example.drivingtest.model.QuestionModel
-import com.example.drivingtest.ui.examination.FragmentExamination
+import com.example.drivingtest.databinding.ItemRcvExamBinding
+import com.example.drivingtest.model.QuestionsModel
+import com.example.drivingtest.ui.examination.FragmentTakeExam
 
-class ExaminationAdapter(val context: Context, var _data: QuestionModel, var pos: Int, var size: Int) :
-    BaseRecyclerView<QuestionModel, ExaminationAdapter.ViewHolder>() {
+class TakeExamAdapter(val context: Context, var _data: QuestionsModel, var pos: Int, var size: Int) :
+    BaseRecyclerView<QuestionsModel, TakeExamAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: ItemRcvExaminationBinding) :
-        BaseViewHolder<QuestionModel>(binding), CompoundButton.OnCheckedChangeListener {
+    inner class ViewHolder(private val binding: ItemRcvExamBinding) :
+        BaseViewHolder<QuestionsModel>(binding), CompoundButton.OnCheckedChangeListener {
         @SuppressLint("SetTextI18n")
-        override fun bindViewHolder(data: QuestionModel) {
+        override fun bindViewHolder(data: QuestionsModel) {
             binding.tvStt.text = "${pos + 1}/$size"
             binding.tvQuestionExam.text = data.questions
             binding.A.text = data.A
@@ -79,7 +79,7 @@ class ExaminationAdapter(val context: Context, var _data: QuestionModel, var pos
             if (binding.B.isChecked) _data.lcB = 1 else _data.lcB = 0
             if (binding.C.isChecked) _data.lcC = 1 else _data.lcC = 0
             if (binding.D.isChecked) _data.lcD = 1 else _data.lcD = 0
-            FragmentExamination.listData?.set(pos, _data)
+            FragmentTakeExam.listData?.set(pos, _data)
         }
 
     }
@@ -87,7 +87,7 @@ class ExaminationAdapter(val context: Context, var _data: QuestionModel, var pos
     @SuppressLint("UseCompatLoadingForDrawables", "DiscouragedApi")
     fun getDrawable(
         context: Context,
-        data: QuestionModel
+        data: QuestionsModel
     ): Drawable? {
         val resources = context.resources
         val resourceId = resources.getIdentifier(
@@ -112,15 +112,15 @@ class ExaminationAdapter(val context: Context, var _data: QuestionModel, var pos
         return sb1
     }
 
-    override fun submitList(mList: ArrayList<QuestionModel>) {
+    override fun submitList(mList: ArrayList<QuestionsModel>) {
         /* */
     }
 
-    override fun getListItem(): MutableList<QuestionModel>? = null
+    override fun getListItem(): MutableList<QuestionsModel>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemRcvExaminationBinding.inflate(
+            ItemRcvExamBinding.inflate(
                 LayoutInflater.from(context),
                 parent,
                 false

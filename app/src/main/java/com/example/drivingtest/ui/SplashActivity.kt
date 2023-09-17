@@ -11,6 +11,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(
     override fun initAction() {
         Handler().postDelayed({
             openActivity(this@SplashActivity, MainActivity::class.java)
-        }, 3)
+        }, 2000)
     }
 }

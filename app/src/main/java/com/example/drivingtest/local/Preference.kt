@@ -11,7 +11,6 @@ class Preference(context: Context) {
     private val KEY_TOTAL_COIN = "KEY_TOTAL_COIN" // coin
     private val KEY_FIRST_INSTALL = "KEY_FIRST_INSTALL" // coin
     private val INT_ZERO = 0 // coin
-    private val KEY_UNLOCK = "KEY_UNLOCK"
 
     init {
         sharedPreferences = context.getSharedPreferences(PREFS_ACCOUNT, Context.MODE_PRIVATE)
@@ -33,14 +32,6 @@ class Preference(context: Context) {
 
     fun getValueCoin(): Int {
         return sharedPreferences.getInt(KEY_TOTAL_COIN, INT_ZERO)
-    }
-
-    fun setKeyUnlock(value: MutableSet<String>) {
-        sharedPreferences.edit().putStringSet(KEY_UNLOCK, value).apply()
-    }
-
-    fun getKeyUnlock(): Set<String>? {
-        return sharedPreferences.getStringSet(KEY_UNLOCK, mutableSetOf())
     }
 
     companion object {

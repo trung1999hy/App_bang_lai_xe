@@ -3,19 +3,18 @@ package com.example.drivingtest.ui.examination.result
 import android.annotation.SuppressLint
 import com.example.drivingtest.R
 import com.example.drivingtest.base.BaseFragmentWithBinding
-import com.example.drivingtest.databinding.FragmentResultBinding
-import com.example.drivingtest.ui.examination.FragmentExamination
-import com.example.drivingtest.ui.examination.noti.FragmentNotiExam
-import com.example.drivingtest.ui.examination.result.checkresult.FragmentCheckResult
+import com.example.drivingtest.databinding.FragmentResultsBinding
+import com.example.drivingtest.ui.examination.noti.FragmentExamInformation
+import com.example.drivingtest.ui.examination.result.reviewanswer.FragmentReviewAnswer
 import com.example.drivingtest.ui.home.FragmentHome
 import com.example.drivingtest.utils.Common
 
-class FragmentResult : BaseFragmentWithBinding<FragmentResultBinding>(
-    FragmentResultBinding::inflate
+class FragmentResults : BaseFragmentWithBinding<FragmentResultsBinding>(
+    FragmentResultsBinding::inflate
 ) {
     companion object {
-        fun newInstance(resultExam: String, typeExam: String): FragmentResult {
-            val fragment = FragmentResult()
+        fun newInstance(resultExam: String, typeExam: String): FragmentResults {
+            val fragment = FragmentResults()
             fragment.resultExam = resultExam
             fragment.typeExam = typeExam
             return fragment
@@ -51,7 +50,7 @@ class FragmentResult : BaseFragmentWithBinding<FragmentResultBinding>(
             Common.replaceFragment(
                 requireActivity(),
                 R.id.FragmentLayout,
-                FragmentCheckResult.newInstance('t')
+                FragmentReviewAnswer.newInstance('t')
             )
         }
 
@@ -59,7 +58,7 @@ class FragmentResult : BaseFragmentWithBinding<FragmentResultBinding>(
             Common.replaceFragment(
                 requireActivity(),
                 R.id.FragmentLayout,
-                FragmentNotiExam.newInstance(typeExam)
+                FragmentExamInformation.newInstance(typeExam)
             )
         }
     }
